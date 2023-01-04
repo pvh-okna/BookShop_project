@@ -5,7 +5,7 @@ export const WrapperFooter = styled.footer`
  flex-wrap:wrap ;
   width: 100%;
   height: 50px;
-  margin: 0 20rem;
+  padding: 0 20rem;
   &::before{
     content: '';
     display: inline-flex;

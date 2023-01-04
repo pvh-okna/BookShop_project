@@ -3,16 +3,17 @@ import { GlobalStyle } from '../../assets/styles';
 import Header from '../../pages/header';
 import Footer from "../../pages/footer";
 import Main from '../../pages/main';
+import RouterElement from "../router";
 
 const Layout = () => {
     return (
         <>
-            <Header/>
+           <Header/>
             <GlobalStyle/>
-            <Main/>
-            {/*    hjj*/}
-            {/*    /!*<RouteComponent/>*!/*/}
-            {/*</Main>*/}
+            <Main>
+                <RouterElement/>
+            </Main>
+
 
             <Footer/>
         </>
