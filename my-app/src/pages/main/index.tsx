@@ -1,10 +1,14 @@
-import React from 'react';
+import React, {ReactNode} from 'react';
 import { WrapperMain } from './style';
 
-const Main = () => {
+export type MainT = {
+    children?: ReactNode
+}
+const Main = ({children}:MainT) => {
     return (
         <WrapperMain>
-            ggg
+
+            {children}
         </WrapperMain>
     );
 };

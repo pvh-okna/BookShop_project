@@ -1,12 +1,14 @@
 import React from 'react';
 import { IconFavorite, IconShoppingBag, IconUser, WrapperMenu } from './style';
+import {useNavigate, useNavigation} from "react-router-dom";
 
 const Menu = () => {
+    const navigate = useNavigate()
     return (
         <WrapperMenu>
            <IconFavorite/>
             <IconShoppingBag/>
-            <IconUser/>
+            <IconUser onClick={() => navigate('registration')}/>
         </WrapperMenu>
     );
 };
