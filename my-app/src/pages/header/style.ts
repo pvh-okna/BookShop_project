@@ -11,6 +11,7 @@ export const WrapperHeader = styled.section`
   width: 100%;
   height: 80px;
   z-index: 12;
+  background-color: white;
   @media (max-width: 1050px) {
     flex-wrap: wrap;
     height: 170px;
@@ -20,8 +21,8 @@ export const WrapperHeader = styled.section`
    display: inline-flex;
    background-color: #e7e7e7;
    height: 2px;
-   width: 54rem;
-   margin: 0 auto;
+   width: 58rem;
+   margin: 0 321px;
  }
   
 `

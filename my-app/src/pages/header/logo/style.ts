@@ -10,4 +10,5 @@ export const Wrapper = styled.div`
   width: 158px;
   height: 68px;
   margin: 0 35px 0 20rem;
+  cursor: pointer;
 `

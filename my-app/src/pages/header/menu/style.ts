@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const IconFavorite = styled.span`
+export const IconFavorite = styled.span<{ theme?: boolean}>`
   &,
   &::after {
     border: 2px solid;
@@ -10,7 +10,7 @@ export const IconFavorite = styled.span`
     height: 8px;
     border-bottom: 0;
   }
-  
+    color: ${({theme}) => theme.background};;
     cursor: pointer;
     box-sizing: border-box;
     position: relative;
@@ -107,4 +107,6 @@ display: inline-flex;
   justify-content: space-between;
   align-items: center;
   width: 100px;
-`
+
+ 
+ `

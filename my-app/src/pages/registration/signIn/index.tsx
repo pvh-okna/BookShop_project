@@ -11,8 +11,7 @@ const SignIn = () => {
         email: '',
         password: '',
     })
-    // const[email, setEmail] = useState('')
-    // const[password, setPassword] = useState('')
+
     const [emailDirty, setEmailDirty] = useState(false);
     const [emailError, setEmailError] = useState("Email must not be empty");
     const [passwordDirty, setPasswordDirty] = useState(false);
@@ -20,18 +19,16 @@ const SignIn = () => {
     const [formValid, setFormValid] = useState(false);
 
     useEffect(() => {
-
         if(emailError || passwordError){
             setFormValid(false)
         } else {
             setFormValid(true)
-
         }
     }, [emailError, passwordError])
 
     const navigate = useNavigate()
 
-    const emailHandler = (e:any) => {
+    const handlerChange = (e:any) => {
         setValue((props: Values) => {
             return (
                 {
@@ -39,40 +36,44 @@ const SignIn = () => {
                     [e.target.name]: e.target.value,
                 })
         })
-        const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        if (!re.test(String(e.target.value).toLowerCase()))
-        {
-            setEmailError("Not correct email")
+    }
+    const handleLogin = (e:React.SyntheticEvent) => {
+        e.preventDefault();
+        const loggedUser = JSON.parse(localStorage.getItem("user") || '');
+        if(
+            value.email === loggedUser.email &&
+            value.password === loggedUser.password
+        ){
+            localStorage.setItem("loggedin", JSON.stringify(true))
+            navigate("/")
         }else{
-            setEmailError('')
+            alert('wrong email or password')
         }
     }
 
-    const passwordHandler = (e:any) => {
-        setValue((props: Values) => {
-                    return (
-                        {
-                            ...props,
-                            [e.target.name]: e.target.value,
-                        })
-                })
-        if(e.target.value.length < 5 ){
-            setPasswordError("Password must be more 5 symbols")
-            if(!e.target.value){
-                setPasswordError("Password must not be empty")
-            }
-        } else {
-            setPasswordError('');
-        }
-    }
 
-    const blurHandler = (e:any) => {
+       const blurHandler = (e:any) => {
 
         switch (e.target.name) {
             case 'email' :
+                const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                if (!re.test(String(e.target.value).toLowerCase()))
+                {
+                    setEmailError("Not correct email")
+                }else{
+                    setEmailError('')
+                }
                 setEmailDirty(true)
                 break
             case'password':
+                if(e.target.value.length < 8 ){
+                    setPasswordError("Password must be more 8 symbols")
+                    if(!e.target.value){
+                        setPasswordError("Password must not be empty")
+                    }
+                } else {
+                    setPasswordError('');
+                }
                 setPasswordDirty(true)
                 break
         }
@@ -82,39 +83,43 @@ const SignIn = () => {
         console.log(value)
         navigate('/')
     }
+
     return (
-        <WrapperSignIn>
-            {(emailDirty && emailError) && <div style={{color: 'red'}}>{emailError}</div>}
-            <label>
-                Email
-                <InputForm
-                    //label={'Email'}
-                    type={`text`}
-                    name={'email'}
-                    placeholder={"Your email"}
-                    value={value.email}
-                    onChange={e => emailHandler(e)}
-                    onBlur={e => blurHandler(e)}
-                />
-            </label>
+        <form  onSubmit={handleLogin}>
+            <WrapperSignIn>
+                {(emailDirty && emailError) && <div style={{color: 'red'}}>{emailError}</div>}
+                <label>
+                    Email
+                    <InputForm
+                        //label={'Email'}
+                        type={`text`}
+                        name={'email'}
+                        placeholder={"Your email"}
+                        value={value.email}
+                        onChange={e => handlerChange(e)}
+                        onBlur={e => blurHandler(e)}
+                    />
+                </label>
 
-            {(passwordError && passwordDirty) && <div style={{color:'red'}}>{passwordError}</div>}
+                {(passwordError && passwordDirty) && <div style={{color:'red'}}>{passwordError}</div>}
 
-           <label>
-               Password
-               <InputForm
-                   //label={"Password"}
-                   type={`password`}
-                   name={'password'}
-                   placeholder={"Your password"}
-                   value={value.password}
-                   onChange={e => passwordHandler(e)}
-                   onBlur={e => blurHandler(e)}
+                <label>
+                    Password
+                    <InputForm
+                        //label={"Password"}
+                        type={`password`}
+                        name={'password'}
+                        placeholder={"Your password"}
+                        value={value.password}
+                        onChange={e => handlerChange(e)}
+                        onBlur={e => blurHandler(e)}
 
-               />
-           </label>
-            <FormBtn disabled={!formValid} type={"submit"} onClick={ DataForm}>Sign In</FormBtn>
-        </WrapperSignIn>
+                    />
+                </label>
+                <FormBtn disabled={!formValid} type={"submit"} onClick={ DataForm}>Sign In</FormBtn>
+            </WrapperSignIn>
+        </form>
+
     );
 };
 
