@@ -1,24 +1,26 @@
 import React, {useState} from 'react';
 import SignIn from './signIn';
 import SignUp from './signUp';
-import {ButtonsChangeFormBlock, ButtonSignIn, ButtonSignUp, FormTitle,  WrapperForm, WrapperRegistration } from './style';
+import {BtnSignIn,
+    BtnSignUp,  WrapperForm, WrapperRegistration } from './style';
+import {useThemeSelector} from "../../redux/rootReducer";
 
 const Registration = () => {
     const [selectForm, setSelectForm] = useState(false)
-    //const theme = useThemeSelector(state => state.themeReducer)
+    const selectTheme = useThemeSelector(state => state.themeReducer);
     return (
         <WrapperRegistration>
-            <WrapperForm>
-                {/*условие истино-сигн ин если ложно -сигн ап*/}
-                <button onClick={() => {
+            <WrapperForm props={selectTheme}
+           formState= {selectForm}>
+                <BtnSignIn formState= {selectForm} onClick={() => {
                     setSelectForm(true)
                     console.log(selectForm)
-                }}>sign in</button>
-                <p/>
-                <button onClick={() => {
+                }}>SIGN IN</BtnSignIn>
+
+                <BtnSignUp formState= {selectForm} onClick={() => {
                     setSelectForm(false)
                     console.log(selectForm)
-                }}>sign up</button>
+                }}>SIGN UP</BtnSignUp>
                 {  selectForm ? <SignIn/> : <SignUp/>}
 
             </WrapperForm>

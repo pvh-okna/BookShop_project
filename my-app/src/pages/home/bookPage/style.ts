@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {COLORS, styleProps} from "../../../assets/styles";
 
 export const WrapperBookPage = styled.section`
   margin: 20px auto 60px;
@@ -21,13 +22,14 @@ export const WrapperBookImg = styled.div`
   background-color:#D7E4FD;
   width: 40%;
 `
-export const BookPrice = styled.div`
+export const BookPrice = styled.div<{ props: styleProps }>`
 font-family: Bebas Neue, cursive;
   font-weight: 400;
   font-size: 35px;
   margin-bottom: 5px;
+  color:${({props}) => props.color } ;
 `
-export const BtnShop = styled.button`
+export const BtnShop = styled.button<{ props: styleProps }>`
 width: 41%;
 height: 56px;
 color: white;
@@ -38,24 +40,30 @@ border: none;
 margin: 0 72px 0 auto;
   position: relative;
   top:-115px;
+  &:hover{
+    background-color: #5B5A62;
+  }
 `
 
 export const BtnPreview= styled.button`
-  width: 448px;
+  width:100%;
   height: 56px;
-  
   background-color:white;
-  border: none;
-  margin: 0 0 0 auto;
+  border: 1px solid #313037;
+  margin: 0 72px 0 373px;
   position: relative;
   top:-115px;
   font-family: Inter,sans-serif;  
-  font-size: 16px;
+  font-size: 18px;
   color: #313037;
 `
-export const BookDescription = styled.div`
-   margin-top:-39px ;
-    width: 91%;
+export const BookDescription = styled.div <{ props: styleProps }>`
+  margin-top:-39px ;
+  width: 91%;
+  color:  ${({props}) => props.color };
+  p{
+    color:  ${({props}) => props.color };
+  }
     p::after{
       content: '';
       display: inline-flex;
@@ -83,14 +91,14 @@ font-family: Inter, sans-serif;
   }
   
 `
-export const BookParamts= styled.div`
-    width: 40%;
+export const BookParamts= styled.div<{ props: styleProps }>`
+  width: 40%;
   color: #A8A8A8;
 `
-export const BookValue= styled.div`
+export const BookValue= styled.div <{ props: styleProps }>`
 width: 60%;
   padding: 0;
- 
+ color: ${({props}) => props.color };
 `
 export const WrapperBookParamets=styled.div`
     width: 100%;
@@ -103,7 +111,7 @@ export const WrapperBookParamets=styled.div`
   }
     `
 
-export const ArrowLeft  = styled.div`
+export const ArrowLeft  = styled.div<{ props: styleProps }>`
  
     box-sizing: border-box;
     position: relative;
@@ -114,7 +122,7 @@ export const ArrowLeft  = styled.div`
   left:333px;
   margin: 25px 0;
   cursor: pointer;
-  
+  color:${({props}) => props.color};
   &::after,
   &::before {
     content: "";

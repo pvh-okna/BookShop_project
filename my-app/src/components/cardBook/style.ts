@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {styleProps} from "../../assets/styles";
 
 
 export const WrapperCard = styled.div`
@@ -13,12 +14,12 @@ export const WrapperCard = styled.div`
   }
 `
 
-export const CardBlock = styled.div`
+export const CardBlock = styled.div<{ props: styleProps }>`
   font-family: Bebas Neue, sans-serif;
   width: 250px;
   height: 430px;
   overflow: hidden;
-  background-color:#D7E4FD;
+  background-color:${({props}) => props.background };
   font-style: normal;
 `
 
@@ -33,32 +34,34 @@ export const CardImg = styled.div<{ image: string }>`
   display: flex;
   justify-content: space-between;
 `
-export const CardInfo = styled.div`
+export const CardInfo = styled.div<{ props: styleProps }>`
   padding: 10px 5px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 height: 190px;
-  background-color: white; 
+  background-color: ${({props}) => props.background }; 
   
 `
 
-export const CardTitle = styled.p`
+export const CardTitle = styled.p<{ props: styleProps }>`
   font-family: Bebas Neue, sans-serif;
   font-weight: 700;
   margin-bottom: 10px;
   min-height: 38px;
   font-size: 18px;
+  color: ${({props}) => props.color } ;
   
 `
 
-export const CardDescription = styled.div`
+export const CardDescription = styled.div<{ props: styleProps }>`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 105px;
   & span{
     font-weight: bold;
+    color:  ${({props}) => props.color };
   }
   & p {
     font-family: Inter, sans-serif;

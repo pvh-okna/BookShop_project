@@ -1,28 +1,36 @@
 import styled from "styled-components";
+import {styleProps} from "../../assets/styles";
 
 export const WrapperRegistration = styled.div`
-border: 2px solid black;
-width: 100%;
-height: 500px;
-margin: 150px`
-export const WrapperForm= styled.div``
-export const FormTitle = styled.div``
-export const ButtonSignIn = styled.button<{formState: boolean}>`
- border-bottom-right-radius: 20px;
-  background: ${({formState}) => formState ? 'rgb(79, 13, 100)' : '#bbbbbb;' };
-  color: ${({formState}) => formState ?  '#bbbbbb;' : 'black'};
-  cursor: ${({formState}) => formState ?  'default' : 'pointer'};
-  &:hover{
-    color: ${({formState}) => formState ? "none" :  "#ffe311;"};
-  }`
-export const ButtonSignUp = styled.button<{formState: boolean}>`
-  border-bottom-left-radius: 20px;
-  background: ${({formState}) => formState ?  '#bbbbbb;' : 'rgb(79, 13, 100)'};
-  color: ${({formState}) => formState ? 'black' :  '#bbbbbb;'};
-  cursor: ${({formState}) => formState ? 'pointer' : 'default'};
-  &:hover{
-    color: ${({formState}) => formState ? "#ffe311;" :  "none"};
-  }`
+  border: 1px solid #A8A8A8;
+  width: 26%;
+  
+  margin: 130px auto;
+  background-color:#F7F7F7`
+export const WrapperForm= styled.div<{ props: styleProps, formState: boolean }>`
 
-export const ButtonsChangeFormBlock = styled.button`
-    `
+  button {
+    width: 50%;
+    height: 53px;   
+  }
+
+  button:hover {
+   cursor: pointer;
+    background-color: white;
+  }
+`
+export const BtnSignIn = styled.button<{formState: boolean}>`
+  color: ${({formState}) => formState ? 'black' :  '#A8A8A8;'};
+  border-bottom: 1px solid ${({formState}) => formState ? 'black;' :  '#A8A8A8;'};
+   background-color: #F7F7F7;
+  font-family:Bebas Neue,system-ui;
+font-size: 20px;
+
+`
+export const BtnSignUp = styled.button <{formState: boolean}>`
+  font-family:Bebas Neue,system-ui;
+  color: ${({formState}) => formState ? '#A8A8A8;' :  'black;'};
+  border-bottom: 1px solid ${({formState}) => formState ? '##A8A8A8;' :  'black;'};
+  background-color:#F7F7F7;
+  font-size: 20px;
+`

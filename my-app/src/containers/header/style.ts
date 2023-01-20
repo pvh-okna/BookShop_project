@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import {styleProps} from "../../assets/styles";
 
-export const WrapperHeader = styled.section`
+export const WrapperHeader = styled.section<{ props: styleProps }>`
     position: fixed;
   display: flex;
   margin: 0 auto;
@@ -11,7 +12,7 @@ export const WrapperHeader = styled.section`
   width: 100%;
   height: 80px;
   z-index: 12;
-  background-color: white;
+  background-color: ${({props}) => props.background };
   @media (max-width: 1050px) {
     flex-wrap: wrap;
     height: 170px;

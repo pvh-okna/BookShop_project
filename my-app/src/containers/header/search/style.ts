@@ -5,6 +5,7 @@ export const WrapperSearch = styled.section`
   width: 32%;
   position: relative;
   margin: 0 45px;
+  margin-right: 12px;
   @media (max-width: 1050px) {
     display: none;
   }

@@ -1,13 +1,14 @@
 import React from 'react';
 import Book from '../../../components/cardBook';
-import { useGetAllCard } from '../../../data/getAllCard';
-import { WrapperCards } from './style';
+import { useGetAllCard } from '../../../hooks/useAllCard';
+import {TitleWrapper, WrapperCards } from './style';
+import {useThemeSelector} from "../../../redux/rootReducer";
+import { ItemsType } from '../../../type';
 
 
 const AllCards = () => {
     const booksArray = useGetAllCard()
-
-
+    const selectTheme = useThemeSelector(state => state.themeReducer);
     if (booksArray.error) {
         // @ts-ignore
         return <div>Ошибка: {booksArray.error.message}</div>;
@@ -16,8 +17,10 @@ const AllCards = () => {
     } else {
         return (
             <>
+              <TitleWrapper props={selectTheme}>New Releases Books</TitleWrapper>
                 <WrapperCards>
-                    {booksArray.items.map(((card: any) => <Book props={card} key={card.isbn13}/>))}
+
+                    {booksArray.items.map(((card: ItemsType) => <Book props={card} key={card.isbn13}/>))}
                 </WrapperCards>
             </>
         );

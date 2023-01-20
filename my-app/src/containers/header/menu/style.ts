@@ -1,58 +1,16 @@
 import styled from "styled-components";
+import {styleProps} from "../../../assets/styles";
 
-export const IconFavorite = styled.span<{ theme?: boolean}>`
-  &,
-  &::after {
-    border: 2px solid;
-    border-top-left-radius: 100px;
-    border-top-right-radius: 100px;
-    width: 10px;
-    height: 8px;
-    border-bottom: 0;
-  }
-    color: ${({theme}) => theme.background};;
-    cursor: pointer;
-    box-sizing: border-box;
-    position: relative;
-    transform:
-            translate(
-                    calc(-10px / 2 * var(--ggs,1)),
-                    calc(-6px / 2 * var(--ggs,1))
-            )
-            rotate(-45deg)
-            scale(var(--ggs,1));
-    display: block;
-  
-  &::after,
-  &::before {
-    content: "";
-    display: block;
-    box-sizing: border-box;
-    position: absolute
-  }
-  &::after {
-    right: -9px;
-    transform: rotate(90deg);
-    top: 5px;
-  }
-  &::before {
-    width: 11px;
-    height: 11px;
-    border-left: 2px solid;
-    border-bottom: 2px solid;
-    left: -2px;
-    top: 3px;
-  }
-`
-export const IconShoppingBag = styled.span`
+export const IconShoppingBag = styled.span<{ props: styleProps }>`
   transform: scale(var(--ggs,1));
   cursor: pointer;
+ color:${({props}) => props.color };
 &,
 &::after {
   box-sizing: border-box;
   position: relative;
   display: block;
-  width: 20px;
+  width: 19px;
   height: 20px;
   border: 2px solid;
   border-radius: 3px;
@@ -69,13 +27,15 @@ export const IconShoppingBag = styled.span`
   left: 3px;
 }
 `
-export const IconUser = styled.span`
+export const IconUser = styled.span<{ props: styleProps }>`
   cursor: pointer;
   display: inline-block;
   transform: scale(var(--ggs,1));
   box-sizing: border-box;
   width: 12px;
   height: 18px;
+ margin-right: 12px;
+ color:${({props}) => props.color } ;
 
 &::after,
 &::before {
@@ -106,7 +66,7 @@ export const WrapperMenu = styled.div`
 display: inline-flex;
   justify-content: space-between;
   align-items: center;
-  width: 100px;
+  width: 57px;
 
  
  `

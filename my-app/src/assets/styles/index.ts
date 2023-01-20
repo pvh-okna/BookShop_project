@@ -1,5 +1,5 @@
 import {createGlobalStyle} from "styled-components";
-export const GlobalStyle = createGlobalStyle`
+export const GlobalStyle = createGlobalStyle<{ props: styleProps }>`
   * {
     margin: 0;
     padding: 0;
@@ -10,8 +10,23 @@ export const GlobalStyle = createGlobalStyle`
     cursor: pointer;
   }
   body {
-   
-    font-family: 'Rubik', sans-serif;
-
+   background-color: ${({props}) => props.background }!important;
+   font-family: 'Rubik', sans-serif;
+    
   }
+  
 `
+export type styleProps = {
+    background: string,
+    color?: string,
+}
+
+export const COLORS = {
+    primary2: '#917CFF',
+    secondary: '#313037',
+    blackBg: '#26252a',
+    darkBg: '#242426',
+    lightContext: '#313037',
+    whiteContext: '#FFFFFF',
+
+};

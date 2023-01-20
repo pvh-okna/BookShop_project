@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {CardType} from "../type";
 
-export const GetCard = (id:number) => {
+export const UseCard = (id:number) => {
 
 
     const [items, setItems] = useState<CardType>();

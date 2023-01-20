@@ -21,12 +21,8 @@ return(
         onChange={props.onChange}
         onBlur={props.onBlur}
         >
-
         </Input>
-
     </WrapperInput>
-
-
 
 )
 }

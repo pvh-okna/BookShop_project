@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {FormBtn, WrapperSignIn } from './style';
 import InputForm from "../../../components/form/InputForm";
 import {useNavigate} from "react-router-dom";
+import {ENTER_PASSWORD, WRONG_EMAIL, WRONG_PASSWORD_LENGTH} from '../constants';
 export type Values = {
     email : string,
     password : string,
@@ -13,9 +14,9 @@ const SignIn = () => {
     })
 
     const [emailDirty, setEmailDirty] = useState(false);
-    const [emailError, setEmailError] = useState("Email must not be empty");
+    const [emailError, setEmailError] = useState(WRONG_EMAIL);
     const [passwordDirty, setPasswordDirty] = useState(false);
-    const [passwordError, setPasswordError] = useState("Password must not be empty");
+    const [passwordError, setPasswordError] = useState(ENTER_PASSWORD);
     const [formValid, setFormValid] = useState(false);
 
     useEffect(() => {
@@ -45,6 +46,7 @@ const SignIn = () => {
             value.password === loggedUser.password
         ){
             localStorage.setItem("loggedin", JSON.stringify(true))
+            localStorage.setItem('cart', JSON.stringify([]))
             navigate("/")
         }else{
             alert('wrong email or password')
@@ -59,7 +61,7 @@ const SignIn = () => {
                 const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
                 if (!re.test(String(e.target.value).toLowerCase()))
                 {
-                    setEmailError("Not correct email")
+                    setEmailError(WRONG_EMAIL)
                 }else{
                     setEmailError('')
                 }
@@ -67,9 +69,9 @@ const SignIn = () => {
                 break
             case'password':
                 if(e.target.value.length < 8 ){
-                    setPasswordError("Password must be more 8 symbols")
+                    setPasswordError(WRONG_PASSWORD_LENGTH)
                     if(!e.target.value){
-                        setPasswordError("Password must not be empty")
+                        setPasswordError(ENTER_PASSWORD)
                     }
                 } else {
                     setPasswordError('');
@@ -79,11 +81,6 @@ const SignIn = () => {
         }
     }
 
-    const DataForm = () => {
-        console.log(value)
-        navigate('/')
-    }
-
     return (
         <form  onSubmit={handleLogin}>
             <WrapperSignIn>
@@ -91,7 +88,6 @@ const SignIn = () => {
                 <label>
                     Email
                     <InputForm
-                        //label={'Email'}
                         type={`text`}
                         name={'email'}
                         placeholder={"Your email"}
@@ -106,7 +102,6 @@ const SignIn = () => {
                 <label>
                     Password
                     <InputForm
-                        //label={"Password"}
                         type={`password`}
                         name={'password'}
                         placeholder={"Your password"}
@@ -116,7 +111,7 @@ const SignIn = () => {
 
                     />
                 </label>
-                <FormBtn disabled={!formValid} type={"submit"} onClick={ DataForm}>Sign In</FormBtn>
+                <FormBtn disabled={!formValid} type={"submit"} onClick={ handleLogin}>Sign In</FormBtn>
             </WrapperSignIn>
         </form>
 
